@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-
 import {
   HomeOutlined,
   ExploreOutlined,
@@ -9,58 +8,38 @@ import {
   BookmarkBorderOutlined,
   PersonOutlineOutlined,
   SettingsOutlined,
+  LogoutOutlined,
   Add,
 } from "@mui/icons-material";
 
 function Sidebar({ onCreatePost }) {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/login";
+  };
+
   const menuItems = [
-    {
-      label: "Home",
-      icon: <HomeOutlined />,
-      active: true,
-    },
-    {
-      label: "Explore",
-      icon: <ExploreOutlined />,
-    },
-    {
-      label: "Communities",
-      icon: <PeopleOutlineOutlined />,
-    },
-    {
-      label: "Notifications",
-      icon: <NotificationsNoneOutlined />,
-    },
-    {
-      label: "Messages",
-      icon: <MailOutlineOutlined />,
-    },
-    {
-      label: "Bookmarks",
-      icon: <BookmarkBorderOutlined />,
-    },
-    {
-      label: "Profile",
-      icon: <PersonOutlineOutlined />,
-    },
-    {
-      label: "Settings",
-      icon: <SettingsOutlined />,
-    },
+    { label: "Home", icon: <HomeOutlined />, active: true },
+    { label: "Explore", icon: <ExploreOutlined /> },
+    { label: "Communities", icon: <PeopleOutlineOutlined /> },
+    { label: "Notifications", icon: <NotificationsNoneOutlined /> },
+    { label: "Messages", icon: <MailOutlineOutlined /> },
+    { label: "Bookmarks", icon: <BookmarkBorderOutlined /> },
+    { label: "Profile", icon: <PersonOutlineOutlined /> },
+    { label: "Settings", icon: <SettingsOutlined /> },
   ];
 
   return (
     <aside className="sidebar">
       <div className="logo">
         <div className="logo-mark">S</div>
-
         <div>
           <h2>
             Social<span>Sphere</span>
           </h2>
-
           <p>Connect · Share · Discover</p>
         </div>
       </div>
@@ -69,9 +48,7 @@ function Sidebar({ onCreatePost }) {
         {menuItems.map((item) => (
           <button
             key={item.label}
-            className={`nav-item ${
-              item.active ? "active" : ""
-            }`}
+            className={`nav-item ${item.active ? "active" : ""}`}
             onClick={() => {
               if (item.label === "Profile") {
                 navigate("/profile");
@@ -82,12 +59,14 @@ function Sidebar({ onCreatePost }) {
             <span>{item.label}</span>
           </button>
         ))}
+
+        <button className="nav-item logout-item" onClick={handleLogout}>
+          <LogoutOutlined />
+          <span>Logout</span>
+        </button>
       </nav>
 
-      <button
-        className="create-button"
-        onClick={onCreatePost}
-      >
+      <button className="create-button" onClick={onCreatePost}>
         <Add />
         Create Post
       </button>
