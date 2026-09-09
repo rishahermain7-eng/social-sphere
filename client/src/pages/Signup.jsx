@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import {
   CameraAltOutlined,
   PersonOutlineOutlined,
@@ -7,11 +8,14 @@ import {
   LockOutlined,
   ArrowForward,
 } from "@mui/icons-material";
+
 import "./Auth.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [profilePreview, setProfilePreview] = useState(null);
 
   const [formData, setFormData] = useState({
@@ -36,42 +40,42 @@ function Signup() {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const data = new FormData();
+    try {
+      const data = new FormData();
 
-    data.append("name", formData.name);
-    data.append("email", formData.email);
-    data.append("password", formData.password);
+      data.append("name", formData.name);
+      data.append("email", formData.email);
+      data.append("password", formData.password);
 
-    const fileInput = document.getElementById("profile-picture");
+      const fileInput = document.getElementById("profile-picture");
 
-    if (fileInput.files[0]) {
-      data.append("profilePicture", fileInput.files[0]);
+      if (fileInput.files[0]) {
+        data.append("profilePicture", fileInput.files[0]);
+      }
+
+      const response = await fetch(`${API_URL}/api/auth/signup`, {
+        method: "POST",
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        alert(result.message);
+        return;
+      }
+
+      alert("Account created successfully!");
+
+      // Send the new user to the login page
+      navigate("/login");
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong. Please try again.");
     }
-
-    const response = await fetch(`${API_URL}/api/auth/signup`, {
-      method: "POST",
-      body: data,
-    });
-
-    const result = await response.json();
-
-    if (!response.ok) {
-      alert(result.message);
-      return;
-    }
-
-    alert("Account created successfully!");
-
-    console.log(result);
-
-  } catch (error) {
-    console.error("Signup error:", error);
-    alert("Something went wrong. Please try again.");
-  }
-};
+  };
 
   return (
     <div className="auth-page">
@@ -183,7 +187,10 @@ function Signup() {
               </div>
             </div>
 
-            <button type="submit" className="auth-submit">
+            <button
+              type="submit"
+              className="auth-submit"
+            >
               Create Account
               <ArrowForward />
             </button>
@@ -193,7 +200,10 @@ function Signup() {
             <span>Already part of the community?</span>
           </div>
 
-          <Link to="/login" className="auth-switch">
+          <Link
+            to="/login"
+            className="auth-switch"
+          >
             Log in to your account
           </Link>
         </div>

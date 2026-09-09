@@ -40,13 +40,31 @@ function MainLayout() {
 }
 
 function App() {
+  const isLoggedIn = Boolean(localStorage.getItem("token"));
+
   return (
     <Routes>
-      <Route path="/" element={<MainLayout />} />
+      <Route
+        path="/"
+        element={
+          isLoggedIn ? (
+            <MainLayout />
+          ) : (
+            <Navigate to="/signup" replace />
+          )
+        }
+      />
+
       <Route path="/login" element={<Login />} />
+
       <Route path="/signup" element={<Signup />} />
+
       <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<Navigate to="/" replace />} />
+
+      <Route
+        path="*"
+        element={<Navigate to="/" replace />}
+      />
     </Routes>
   );
 }
