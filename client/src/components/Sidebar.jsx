@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 import {
   HomeOutlined,
@@ -13,6 +13,8 @@ import {
 } from "@mui/icons-material";
 
 function Sidebar({ onCreatePost }) {
+  const navigate = useNavigate();
+
   const menuItems = [
     {
       label: "Home",
@@ -67,7 +69,14 @@ function Sidebar({ onCreatePost }) {
         {menuItems.map((item) => (
           <button
             key={item.label}
-            className={`nav-item ${item.active ? "active" : ""}`}
+            className={`nav-item ${
+              item.active ? "active" : ""
+            }`}
+            onClick={() => {
+              if (item.label === "Profile") {
+                navigate("/profile");
+              }
+            }}
           >
             {item.icon}
             <span>{item.label}</span>
