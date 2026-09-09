@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -40,6 +45,7 @@ function MainLayout() {
 }
 
 function App() {
+    useLocation();
   const isLoggedIn = Boolean(localStorage.getItem("token"));
 
   return (
