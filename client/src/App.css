@@ -1051,3 +1051,110 @@
   }
 }
 
+/* =========================
+   MOBILE RESPONSIVE FIX
+   ========================= */
+
+@media (max-width: 700px) {
+  /* Keep all sidebar navigation items visible */
+  .sidebar {
+    height: 68px;
+    min-height: 68px;
+    padding: 7px 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .sidebar-nav {
+    width: max-content;
+    min-width: 100%;
+    gap: 4px;
+    justify-content: flex-start;
+  }
+
+  .sidebar-nav .nav-item,
+  .sidebar-nav .nav-item:not(:first-child) {
+    display: flex;
+    width: 48px;
+    min-width: 48px;
+    height: 52px;
+    padding: 8px 5px;
+    justify-content: center;
+  }
+
+  .sidebar-nav .nav-item svg {
+    font-size: 21px;
+  }
+
+  .sidebar-nav .nav-item span {
+    display: none;
+  }
+
+  /* Keep Create Post available on mobile */
+  .create-button {
+    display: flex;
+    position: fixed;
+    right: 16px;
+    bottom: 84px;
+    z-index: 30;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border-radius: 50%;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+
+  .create-button svg {
+    margin: 0;
+  }
+
+  .create-button {
+    font-size: 0;
+  }
+
+  .create-button svg {
+    font-size: 23px;
+  }
+
+  /* Show right-side content below the feed */
+  .right-panel {
+    display: block;
+    width: 100%;
+  }
+
+  .right-sidebar-content {
+    width: 100%;
+  }
+
+  /* Give the feed a little more breathing room */
+  .feed {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .content-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 16px 12px 90px;
+  }
+
+  /* Prevent long text from overflowing */
+  .post-card,
+  .create-post-card,
+  .side-card,
+  .welcome-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Make the search bar fit properly */
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+}
