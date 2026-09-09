@@ -1221,3 +1221,183 @@
     display: none;
   }
 }
+/* =========================
+   MOBILE APP-STYLE LAYOUT
+   ========================= */
+
+@media (max-width: 700px) {
+  /* Hide desktop sidebar */
+  .sidebar {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: 64px;
+    min-height: 64px;
+    padding: 6px 8px;
+    border-right: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: 100;
+    background: rgba(12, 17, 24, 0.97);
+    backdrop-filter: blur(16px);
+  }
+
+  /* Hide logo/footer/create button from desktop sidebar */
+  .logo,
+  .create-button,
+  .sidebar-footer {
+    display: none;
+  }
+
+  /* Mobile navigation */
+  .sidebar-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0;
+  }
+
+  .sidebar-nav .nav-item,
+  .sidebar-nav .nav-item:not(:first-child) {
+    display: flex;
+    width: 52px;
+    min-width: 52px;
+    height: 52px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+  }
+
+  .sidebar-nav .nav-item span {
+    display: none;
+  }
+
+  .sidebar-nav .nav-item svg {
+    font-size: 22px;
+  }
+
+  /* Show only useful mobile navigation items */
+  .sidebar-nav .nav-item:nth-child(1),
+  .sidebar-nav .nav-item:nth-child(2),
+  .sidebar-nav .nav-item:nth-child(4),
+  .sidebar-nav .nav-item:nth-child(5),
+  .sidebar-nav .nav-item:nth-child(7) {
+    display: flex;
+  }
+
+  .sidebar-nav .nav-item:nth-child(3),
+  .sidebar-nav .nav-item:nth-child(6),
+  .sidebar-nav .nav-item:nth-child(8) {
+    display: none;
+  }
+
+  /* Remove the desktop right column from mobile */
+  .right-panel {
+    display: none;
+  }
+
+  /* Full-width mobile content */
+  .app-main {
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: 76px;
+  }
+
+  .content-layout {
+    display: block;
+    width: 100%;
+    max-width: none;
+    padding: 14px 12px 24px;
+  }
+
+  .feed {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+  }
+
+  /* Mobile navbar */
+  .navbar {
+    height: 64px;
+    padding: 10px 12px;
+  }
+
+  .search-box {
+    width: 100%;
+    height: 44px;
+  }
+
+  .navbar-actions {
+    display: none;
+  }
+
+  /* Composer */
+  .create-post-card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .create-post-top {
+    gap: 10px;
+  }
+
+  .create-post-top textarea {
+    font-size: 15px;
+  }
+
+  .create-post-actions {
+    gap: 4px;
+  }
+
+  .create-post-actions button {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .create-post-actions .post-button {
+    margin-left: auto;
+  }
+
+  /* Feed tabs */
+  .feed-tabs {
+    margin: 20px 4px 14px;
+    gap: 22px;
+  }
+
+  /* Posts */
+  .post-card {
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 16px;
+  }
+
+  .post-text {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .post-image img {
+    max-height: none;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .post-actions {
+    gap: 12px;
+  }
+
+  /* Keep poll/feeling builders inside the card */
+  .poll-builder,
+  .selected-feeling,
+  .feeling-picker,
+  .post-image-preview {
+    margin-left: 0;
+  }
+}
