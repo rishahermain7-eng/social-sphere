@@ -18,7 +18,7 @@ function Sidebar({ onCreatePost }) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const menuItems = [
@@ -36,10 +36,12 @@ function Sidebar({ onCreatePost }) {
     <aside className="sidebar">
       <div className="logo">
         <div className="logo-mark">S</div>
+
         <div>
           <h2>
             Social<span>Sphere</span>
           </h2>
+
           <p>Connect · Share · Discover</p>
         </div>
       </div>
