@@ -1,17 +1,17 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 import {
   EmailOutlined,
   LockOutlined,
   ArrowForward,
 } from "@mui/icons-material";
+
 import "./Auth.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 function Login() {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,7 +28,6 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setLoading(true);
 
     try {
@@ -51,11 +50,14 @@ function Login() {
       }
 
       localStorage.setItem("token", result.token);
-      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem(
+        "user",
+        JSON.stringify(result.user)
+      );
 
-      alert("Login successful!");
-
-      navigate("/");
+      // Reload the app after saving the token so
+      // authentication is checked again immediately.
+      window.location.href = "/";
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
@@ -77,7 +79,6 @@ function Login() {
             <h1>
               Social<span>Sphere</span>
             </h1>
-
             <p>Connect · Share · Discover</p>
           </div>
         </div>
@@ -89,8 +90,8 @@ function Login() {
             <h2>Log in to SocialSphere</h2>
 
             <p>
-              Continue sharing, discovering and connecting with the
-              community.
+              Continue sharing, discovering and connecting
+              with the community.
             </p>
           </div>
 
@@ -144,7 +145,10 @@ function Login() {
             <span>New to SocialSphere?</span>
           </div>
 
-          <Link to="/signup" className="auth-switch">
+          <Link
+            to="/signup"
+            className="auth-switch"
+          >
             Create your account
           </Link>
         </div>
